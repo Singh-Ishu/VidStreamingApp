@@ -1,11 +1,11 @@
 import "./App.css";
 
-import Home from "./pages/Home/Home";
+import Landing from "./pages/Landing/Landing";
 
 function App() {
     return (
         <div className="app-container">
-            <Home />
+            <Landing />
         </div>
     );
 }
