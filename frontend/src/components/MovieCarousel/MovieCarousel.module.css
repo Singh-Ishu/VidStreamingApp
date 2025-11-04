@@ -1,0 +1,24 @@
+.carouselContainer {
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    width: 98vw;
+
+    justify-content: center;
+}
+
+.movieItem {
+    display: inline-block;
+    margin: 5px;
+
+    animation: carousel-movieItem-Movement 20s linear infinite;
+}
+
+@keyframes carousel-movieItem-Movement {
+    0% {
+        transform: translateX(-50vw);
+    }
+    100% {
+        transform: translateX(50vw);
+    }
+}
