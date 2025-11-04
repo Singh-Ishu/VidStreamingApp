@@ -1,9 +1,10 @@
 import styles from "./MovieCarousel.module.css";
 
 function MovieCarousel({ movieList }) {
+    const duplicatedMovies = [...movieList, ...movieList];
     return (
         <div className={styles.carouselContainer}>
-            {movieList.map((movie) => (
+            {duplicatedMovies.map((movie) => (
                 <div key={movie.id} className={styles.movieItem}>
                     <img
                         src={movie.posterUrl}

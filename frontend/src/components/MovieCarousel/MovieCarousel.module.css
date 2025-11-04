@@ -2,9 +2,9 @@
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    width: 98vw;
+    width: 99vw;
 
-    justify-content: center;
+    justify-content: flex-start; /* Align items to the start */
 }
 
 .movieItem {
@@ -16,9 +16,9 @@
 
 @keyframes carousel-movieItem-Movement {
     0% {
-        transform: translateX(-50vw);
+        transform: translateX(0);
     }
     100% {
-        transform: translateX(50vw);
+        transform: translateX(-50vw);
     }
 }
