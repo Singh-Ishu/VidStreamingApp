@@ -4,6 +4,9 @@ import "./App.css";
 
 import Landing from "./pages/Landing/Landing";
 import Browse from "./pages/Browse/Browse";
+import Movies from "./pages/Movies/Movies";
+import TVShows from "./pages/TVShows/TVShows";
+import MyList from "./pages/MyList/MyList";
 import NotFound from "./pages/NotFound/NotFound";
 
 function ProtectedRoute({ children }) {
@@ -43,6 +46,30 @@ function AppRoutes() {
                     element={
                         <ProtectedRoute>
                             <Browse />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                    path="/movies" 
+                    element={
+                        <ProtectedRoute>
+                            <Movies />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                    path="/tv-shows" 
+                    element={
+                        <ProtectedRoute>
+                            <TVShows />
+                        </ProtectedRoute>
+                    } 
+                />
+                <Route 
+                    path="/my-list" 
+                    element={
+                        <ProtectedRoute>
+                            <MyList />
                         </ProtectedRoute>
                     } 
                 />

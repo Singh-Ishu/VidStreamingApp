@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
 import Hero from "../../components/Hero/Hero";
 import MovieCarousel from "../../components/MovieCarousel/MovieCarousel";
 import MovieDetails from "../../components/MovieDetails/MovieDetails";
+import Navbar from "../../components/Navbar/Navbar";
 import styles from "./Browse.module.css";
 import placeholderPoster from "/placeholderPoster.jpg";
 
@@ -43,16 +43,8 @@ const movieCategories = {
 };
 
 function Browse() {
-    const { user, logout } = useAuth();
-    const navigate = useNavigate();
-    const [searchQuery, setSearchQuery] = useState("");
     const [selectedMovie, setSelectedMovie] = useState(null);
     const [isDetailsOpen, setIsDetailsOpen] = useState(false);
-
-    const handleLogout = () => {
-        logout();
-        navigate("/");
-    };
 
     const handleMovieClick = (movie) => {
         setSelectedMovie(movie);
@@ -76,39 +68,7 @@ function Browse() {
 
     return (
         <div className={styles.browseContainer}>
-            <header className={styles.navbar}>
-                <div className={styles.navLeft}>
-                    <div className={styles.logo}>ULTFLIX</div>
-                    <nav className={styles.navLinks}>
-                        <a href="#" className={styles.navLink}>Home</a>
-                        <a href="#" className={styles.navLink}>Movies</a>
-                        <a href="#" className={styles.navLink}>TV Shows</a>
-                        <a href="#" className={styles.navLink}>My List</a>
-                    </nav>
-                </div>
-                
-                <div className={styles.navRight}>
-                    <div className={styles.searchContainer}>
-                        <input
-                            type="text"
-                            placeholder="Search movies..."
-                            value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)}
-                            className={styles.searchInput}
-                        />
-                        <svg className={styles.searchIcon} width="20" height="20" viewBox="0 0 24 24" fill="none">
-                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                    </div>
-                    
-                    <div className={styles.userMenu}>
-                        <span className={styles.userName}>{user?.name}</span>
-                        <button className={styles.logoutBtn} onClick={handleLogout}>
-                            Logout
-                        </button>
-                    </div>
-                </div>
-            </header>
+            <Navbar />
 
             <main className={styles.mainContent}>
                 <Hero 

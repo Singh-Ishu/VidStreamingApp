@@ -1,0 +1,137 @@
+.myListContainer {
+    min-height: 100vh;
+    background: #000000;
+}
+
+.mainContent {
+    padding-top: 80px;
+}
+
+.pageHeader {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+}
+
+.pageTitle {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeIn 1s ease-out;
+}
+
+.pageSubtitle {
+    font-size: 1.2rem;
+    color: #cccccc;
+    font-weight: 400;
+    animation: fadeIn 1s ease-out 0.3s both;
+}
+
+.listContent {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+    animation: fadeIn 0.8s ease-out;
+}
+
+.listItem {
+    position: relative;
+}
+
+.removeButton {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: rgba(0, 0, 0, 0.8);
+    border: none;
+    color: #ffffff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.listItem:hover .removeButton {
+    opacity: 1;
+}
+
+.removeButton:hover {
+    background: rgba(220, 53, 69, 0.9);
+    transform: scale(1.1);
+}
+
+.emptyState {
+    text-align: center;
+    padding: 4rem 2rem;
+    animation: fadeIn 1s ease-out;
+}
+
+.emptyIcon {
+    color: #555555;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.emptyTitle {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.emptyDescription {
+    font-size: 1.1rem;
+    color: #cccccc;
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .pageTitle {
+        font-size: 2.5rem;
+    }
+    
+    .pageSubtitle {
+        font-size: 1rem;
+    }
+    
+    .pageHeader {
+        padding: 2rem 1rem;
+    }
+    
+    .listContent {
+        padding: 1rem;
+    }
+    
+    .gridContainer {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+    
+    .emptyTitle {
+        font-size: 1.5rem;
+    }
+    
+    .emptyDescription {
+        font-size: 1rem;
+    }
+}
