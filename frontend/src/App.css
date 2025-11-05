@@ -3,3 +3,13 @@
     background: #000000;
     position: relative;
 }
+
+.loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #000000;
+    color: #ffffff;
+    font-size: 1.2rem;
+}

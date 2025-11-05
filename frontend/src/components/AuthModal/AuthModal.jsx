@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import styles from "./AuthModal.module.css";
 
 function AuthModal({ mode, onClose, onSwitchMode }) {
@@ -7,19 +9,45 @@ function AuthModal({ mode, onClose, onSwitchMode }) {
         password: "",
         confirmPassword: ""
     });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
+    
+    const { login, signup } = useAuth();
+    const navigate = useNavigate();
 
     const handleInputChange = (e) => {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         });
+        // Clear error when user starts typing
+        if (error) setError("");
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission here
-        console.log("Form submitted:", formData);
-        onClose();
+        setLoading(true);
+        setError("");
+
+        try {
+            let result;
+            if (mode === "login") {
+                result = await login(formData.email, formData.password);
+            } else {
+                result = await signup(formData.email, formData.password, formData.confirmPassword);
+            }
+
+            if (result.success) {
+                onClose();
+                navigate("/home");
+            } else {
+                setError(result.error);
+            }
+        } catch (err) {
+            setError("Something went wrong. Please try again.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     const switchToLogin = () => onSwitchMode("login");
@@ -45,6 +73,12 @@ function AuthModal({ mode, onClose, onSwitchMode }) {
                 </div>
 
                 <form className={styles.authForm} onSubmit={handleSubmit}>
+                    {error && (
+                        <div className={styles.errorMessage}>
+                            {error}
+                        </div>
+                    )}
+
                     <div className={styles.inputGroup}>
                         <input
                             type="email"
@@ -54,6 +88,7 @@ function AuthModal({ mode, onClose, onSwitchMode }) {
                             onChange={handleInputChange}
                             className={styles.input}
                             required
+                            disabled={loading}
                         />
                     </div>
 
@@ -66,6 +101,7 @@ function AuthModal({ mode, onClose, onSwitchMode }) {
                             onChange={handleInputChange}
                             className={styles.input}
                             required
+                            disabled={loading}
                         />
                     </div>
 
@@ -79,12 +115,17 @@ function AuthModal({ mode, onClose, onSwitchMode }) {
                                 onChange={handleInputChange}
                                 className={styles.input}
                                 required
+                                disabled={loading}
                             />
                         </div>
                     )}
 
-                    <button type="submit" className={styles.submitButton}>
-                        {mode === "login" ? "Sign In" : "Create Account"}
+                    <button 
+                        type="submit" 
+                        className={styles.submitButton}
+                        disabled={loading}
+                    >
+                        {loading ? "Please wait..." : (mode === "login" ? "Sign In" : "Create Account")}
                     </button>
                 </form>
 

@@ -1,7 +1,22 @@
 .landingContainer {
     min-height: 100vh;
-    background: linear-gradient(135deg, #000000 0%, #111111 100%);
+    background: radial-gradient(ellipse at center, #111111 0%, #000000 70%);
     color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.landingContainer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .header {
@@ -71,48 +86,73 @@
     min-height: 100vh;
     text-align: center;
     padding: 0 2rem;
+    position: relative;
+    z-index: 2;
 }
 
 .heroContent {
-    max-width: 600px;
+    max-width: 700px;
+    animation: fadeIn 1.2s ease-out;
 }
 
 .heroTitle {
-    font-size: 3.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-    background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 50%, #cccccc 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    animation: slideInLeft 1s ease-out 0.3s both;
 }
 
 .heroSubtitle {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    color: #cccccc;
-    font-weight: 300;
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    color: #e0e0e0;
+    font-weight: 400;
+    line-height: 1.5;
+    animation: slideInRight 1s ease-out 0.6s both;
 }
 
 .ctaButton {
-    background: #ffffff;
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
     color: #000000;
     border: none;
-    padding: 1rem 2rem;
-    border-radius: 6px;
-    font-size: 1.1rem;
-    font-weight: 600;
+    padding: 1.2rem 3rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 1s ease-out 0.9s both;
 }
 
 .ctaButton:hover {
-    background: #f0f0f0;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+    background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(255, 255, 255, 0.3);
+}
+
+.ctaButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.ctaButton:hover::before {
+    left: 100%;
 }
 
 .features {
